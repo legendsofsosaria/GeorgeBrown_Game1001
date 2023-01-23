@@ -3,6 +3,7 @@ Brittney House
 01/22/2023 */
 #include <iostream>
 using namespace std;
+
 int main()
 {
 	int bread, milk, cheese;
