@@ -1,5 +1,5 @@
 /* Lab 2 Question 3
-Brittney House
+Elizabeth Gress
 01/23/2023 */
 #include <iostream>
 using namespace std;
