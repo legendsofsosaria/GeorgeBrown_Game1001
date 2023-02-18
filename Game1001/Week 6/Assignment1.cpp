@@ -17,12 +17,6 @@ std::fstream outputFile;
 std::fstream inputFile;
 
 void saveGame(); // I just wanted to try a prototype for fun
-void clear()
-{
-	playerWins = 0;
-	playerTies = 0;
-	computerWins = 0;
-}
 void runGame() //We're going to run through all the motions of the game here
 {
 	std::cout << "Welcome to Rock, Paper, Scissors Simulator!\n";
@@ -40,10 +34,10 @@ void runGame() //We're going to run through all the motions of the game here
 	{
 		std::cout << "Please enter the password: \n";
 		std::cin >> userPassword1;
-		inputFile >> userPassword2 >> playerWins >> computerWins >> playerTies;
+		inputFile >> userPassword2 >> playerWins >> computerWins >> playerTies; //Let's load their score and tell them what it is.
+
 		if (userPassword1 == userPassword2)
 		{
-			//inputFile >> playerWins >> computerWins >> playerTies;//Let's load their score and tell them what it is.
 			std::cout << playerName << ", you have won " << playerWins << " games, " << "you have lost " << computerWins << " games, "
 				<< "you have tied " << playerTies << " games.\n";
 		}
@@ -57,13 +51,6 @@ void runGame() //We're going to run through all the motions of the game here
 	{
 		std::cout << "Please enter a password: \n";
 		std::cin >> userPassword2;
-
-		outputFile.open(playerName + ".txt", std::ios::app);
-		if (outputFile.is_open())
-		{
-			outputFile << userPassword2;
-			outputFile.close();
-		}
 	}
 	//Let's roll a choice for the computer
 	srand(time(NULL));
@@ -129,7 +116,6 @@ void runGame() //We're going to run through all the motions of the game here
 			<< "you have tied " << playerTies << " games.\n";
 	}
 	saveGame();
-	clear();
 	return;
 }
 int main()
@@ -147,11 +133,11 @@ int main()
 }
 void saveGame()
 {
-	outputFile.open(playerName + ".txt", std::ios::app); //Appending save data to the file 
+	outputFile.open(playerName + ".txt", std::ios::out); //Save data to the file 
 
 	if (outputFile.is_open())
 	{
-		outputFile << "\t" << playerWins << "\t" << computerWins << "\t" << playerTies;
+		outputFile << userPassword2 << "\t" << playerWins << "\t" << computerWins << "\t" << playerTies;
 		outputFile.close();
 	}
 }
